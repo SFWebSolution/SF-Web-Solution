@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SF Web Solution</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 70px;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #00faff;
+      text-shadow: 0 0 15px #00faff;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00faff;
+      text-shadow: 0 0 10px #00faff;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: pulse 6s infinite alternate ease-in-out;
+    }
+
+    .bg1 {
+      background-image: url(bg\ 1.png);
+      z-index: 1;
+    }
+
+    .bg2 {
+      background-image: url(bg\ 2.png);
+      z-index: 2;
+      opacity: 0;
+      animation: fade 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes fade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: brightness(0.8) blur(0px); }
+      50% { filter: brightness(1.4) blur(3px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      text-shadow: 0 0 30px #00faff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00faff; }
+      to { text-shadow: 0 0 40px #00faff, 0 0 70px #00faff; }
+    }
+
+    .hero-content p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #dff;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 80px;
+      text-align: center;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00faff;
+      text-shadow: 0 0 15px #00faff;
+    }
+
+    p.section-text {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    /* SERVICES */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 25px;
+    }
+
+    .service-box {
+      width: 280px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+      transition: 0.4s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      transition: 0.4s;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      transition: 0.5s;
+      background: #000;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .portfolio-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #00faff;
+      font-weight: 600;
+      text-shadow: 0 0 8px #00faff;
+      transform: translateY(100%);
+      transition: 0.4s;
+    }
+
+    .portfolio-item:hover .portfolio-info {
+      transform: translateY(0);
+    }
+
+    /* CONTACT */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    button {
+      padding: 12px;
+      background: #00faff;
+      border: none;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: white;
+      color: #00faff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      color: #ccc;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SF Web Solution</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
+    <div class="hero-content">
+      <h2>We Bring Designs to Life</h2>
+      <p>Professional Graphics & Website Development Services</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-text">At SF Web Solution, we combine creativity and technology to deliver outstanding graphics design and professional website development.
+       We help businesses stand out online with modern designs and smart user experiences.
+      We focus on creating digital experiences that are visually stunning, fast, and user-friendly.
+    Whether it's crafting a unique logo, designing an engaging flyer, or developing a professional website made for your
+  business - we make sure everything represents your brand perfectly.</p>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services">
+      <div class="service-box">
+        <h3>Graphics Design</h3>
+        <p>Branding, posters, logos, flyers, and more — we make your visuals pop.</p>
+      </div>
+      <div class="service-box">
+        <h3>Website Design</h3>
+        <p>Responsive, modern, and fully functional websites built with style.</p>
+      </div>
+      <div class="service-box">
+        <h3>Social Media Designs</h3>
+        <p>Boost your brand on our social media platform</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2 class="section-title">Our Portfolio</h2>
+    <p class="section-text">Check out some of our recent projects below.</p>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="Black Gold White Luxury Royal Crown Logo_20251005_103130_0000.png" alt="Design Project 1">
+        <div class="portfolio-info">Modern Logo Design</div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="IMG_20251005_133830.jpg" alt="Design Project 2">
+        <div class="portfolio-info">Business Website</div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="White and Black Girl Movie Ticket_20251005_103348_0000.png" style="      width: 100%;
+      height: 90%;
+      object-fit: cover;
+      transition: 0.5s;
+      border-radius: 10px;
+      background-color: #ccc;" alt="Design Project 3">
+        <div class="portfolio-info">Flyer Design</div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="IMG_20251005_133817.jpg" alt="Design Project 4">
+        <div class="portfolio-info">E-commerce Website</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+ 
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-text">Have a project in mind? Let’s create something amazing together.</p>
+    <form action="mailto:sfwebsolutions@outlook.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 SF Web Solution | Designed with 💙 and creativity.
+  </footer>
+</body>
+</html>
